@@ -9,14 +9,16 @@
   </head>
   <body>
     <h1>Pixel Art Mosaics</h1>
-    <input type="file"
+    <p><input type="file"
        id="mosaicPhoto" name="mosaicPhoto"
-       accept="image/png, image/jpeg"/>
-    <div>
+       accept="image/png, image/jpeg"/> Scale Factor: <input type="text" id="scaleFactor" name="Scale Factor" value="4"></p>
+    <div style="padding: 3rem;">
       <img id="output" src=""/>
       <canvas id="pixelitcanvas" width=1 height=1></canvas>
+      <canvas id="mosaicCanvas" width=1 height=1></canvas>
     </div>
     <script src="./pixelit.js"></script>
+    <script src="./color_difference.js"></script>
     <script src="./sketch1.js"></script>
   </body>
 </html>

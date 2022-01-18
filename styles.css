@@ -2,18 +2,23 @@
 
 body {
 	text-align: center;
-}
-
-h1 {
 	font-family: "Roboto";
 }
 
+
 canvas {
 	max-width: 100%;
-	padding: 1rem;
+	max-height: 100%;
+	margin: 1rem;
 }
 
 
 img {
 	visibility: hidden;
 }
+
+/*#pixelitcanvas {
+	visibility: hidden;
+	max-height: 0;
+	max-width: 0;
+}*/

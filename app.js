@@ -1,3 +1,4 @@
+const avgColors = require('fast-average-color-node');
 const http = require('http');
 const fs = require('fs')
 const path = require('path');
@@ -8,24 +9,51 @@ const hostname = '127.0.0.1';
 const port = 3000;
 
 var imageBasePath = '/mnt/e/users/sng/pictures/'
+var imageDict;
 
-const imageFiles = getImagesRecursive(imageBasePath)
-app.use(express.static(imageBasePath))
-app.use(express.static(__dirname))
-
-
-var server = app.listen(3000, () => {
-    console.log("Running server...")
-})
+init();
 
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, "/index.html"))
-})
 
-app.get('/images', function (req, res) {
-  res.send(imageFiles)
-})
+async function buildImageProps(imageFiles) {
+    imageDict = new Object();
+    for (var i = 0; i < imageFiles.length; i++) {
+        console.log("Reading image", i, "of", imageFiles.length)
+        try {
+            path = '/images/' + imageFiles[i].split(imageBasePath)[1]
+            imageDict[imageFiles[i]] = await avgColors.getAverageColor(imageFiles[i]).value
+        } catch(e) {
+
+        }   
+    } 
+}
+
+async function init () {
+    const imageFiles = getImagesRecursive(imageBasePath)
+    app.use("/images", express.static(imageBasePath))
+    app.use(express.static(__dirname))
+
+    if (fs.existsSync("./image_props.json")) {
+        imageDict = JSON.parse(fs.readFileSync("image_props.json"))
+    } else {
+        await buildImageProps(imageFiles);
+        fs.writeFileSync("image_props.json", JSON.stringify(imageDict));
+    }    
+
+    var server = app.listen(3000, () => {
+        console.log("Running server...")
+    })
+
+
+    app.get('/', function (req, res) {
+      res.sendFile(path.join(__dirname, "/index.html"))
+    })
+
+    app.get('/images', function (req, res) {
+      res.send(imageDict)
+    })
+
+}
 
 
 function flatten(lists) {
