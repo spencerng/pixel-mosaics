@@ -2,4 +2,4 @@
 
 ## Sketch 1
 
-Run `node app.js`
+Run `node app.js` after 

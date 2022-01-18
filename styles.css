@@ -1,7 +1,19 @@
 /* styles.css */
 
+body {
+	text-align: center;
+}
 
 h1 {
-	text-align: center;
 	font-family: "Roboto";
+}
+
+canvas {
+	max-width: 100%;
+	padding: 1rem;
+}
+
+
+img {
+	visibility: hidden;
 }

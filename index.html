@@ -3,12 +3,20 @@
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+    <meta http-equiv="Content-Security-Policy" content="img-src 'self' data:; default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
     <link href="./styles.css" rel="stylesheet">
     <title>Pixel Art Mosaics</title>
   </head>
   <body>
     <h1>Pixel Art Mosaics</h1>
+    <input type="file"
+       id="mosaicPhoto" name="mosaicPhoto"
+       accept="image/png, image/jpeg"/>
+    <div>
+      <img id="output" src=""/>
+      <canvas id="pixelitcanvas" width=1 height=1></canvas>
+    </div>
+    <script src="./pixelit.js"></script>
     <script src="./sketch1.js"></script>
   </body>
 </html>
