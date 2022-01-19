@@ -1,7 +1,7 @@
 {
-  "name": "sketch1",
+  "name": "pixel-mosaics",
   "version": "1.0.0",
-  "description": "## Sketch 1",
+  "description": "Node.js implementation of creating photomosaics, rendered live!",
   "main": "app.js",
   "dependencies": {
     "fast-average-color": "^7.0.1"
@@ -12,12 +12,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spencerng/creative-coding.git"
+    "url": "git+https://github.com/spencerng/pixel-mosaics.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/spencerng/creative-coding/issues"
+    "url": "https://github.com/spencerng/pixel-mosaics/issues"
   },
-  "homepage": "https://github.com/spencerng/creative-coding#readme"
+  "homepage": "https://github.com/spencerng/pixel-mosaics#readme"
 }
