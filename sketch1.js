@@ -99,13 +99,17 @@ async function addImage(x, y, mosaicCtx, mostSimilar, scale) {
       img.classList.add("NO-CACHE")
       await img.decode();
       var srcDim = Math.min(img.width, img.height)
+
+      // Crop images to a square
       var srcX = img.width / 2 - srcDim / 2
       var srcY = img.height / 2 - srcDim / 2
       var canvDim = picSize;
-      mosaicCtx.drawImage(img, srcX, srcY, srcDim, srcDim, Math.round(x / scale) * canvDim, Math.round(y / scale) * canvDim, canvDim, canvDim)
+      mosaicCtx.drawImage(img, srcX, srcY, srcDim, srcDim, 
+        Math.round(x / scale) * canvDim, Math.round(y / scale) * canvDim, canvDim, canvDim)
     } catch(e) {
       await addImage(x, y, mosaicCtx, mostSimilar, scale)
     }
+    // Clean up current image from memory
     img = undefined
 }
 
