@@ -1,5 +1,5 @@
-const picSize = 200;
-const fastLookup = false;
+var picSize = 100;
+var fastLookup = false;
 
 const reader = new FileReader();
 var selector = document.getElementById("mosaicPhoto")
@@ -14,6 +14,9 @@ async function getImageData() {
 getImageData();
 
 reader.addEventListener('load', async function(event) {
+    picSize = document.getElementById('tileSize').value;
+    fastLookup = document.getElementById("fastLoading").checked;
+
     var output = document.getElementById("output")
     output.src = event.target.result
     console.log("Fetching image data")
@@ -21,7 +24,6 @@ reader.addEventListener('load', async function(event) {
     while (imageData === undefined) {
       sleep(250)
     }
-    console.log("Fetching image data fetched!")
 
     const config = {
         from: output,

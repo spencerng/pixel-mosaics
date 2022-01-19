@@ -1,3 +1,5 @@
+const imageBasePath = '/mnt/e/users/sng/pictures/'
+
 const avgColors = require('fast-average-color-node');
 const http = require('http');
 const fs = require('fs')
@@ -8,7 +10,6 @@ var app = express()
 const hostname = '127.0.0.1';
 const port = 3000;
 
-const imageBasePath = '/mnt/e/users/sng/pictures/'
 var imageDict;
 
 init();
@@ -59,7 +60,8 @@ function flatten(lists) {
 }
 
 function isImage(path) {
-    return path.toLowerCase().includes(".jpg") || path.toLowerCase().includes(".jpeg") || path.toLowerCase().includes(".png") || path.toLowerCase().includes(".heic")
+    return path.toLowerCase().includes(".jpg") || path.toLowerCase().includes(".jpeg") || 
+        path.toLowerCase().includes(".png") || path.toLowerCase().includes(".heic")
 }
 
 function getImagesRecursive(src) {
