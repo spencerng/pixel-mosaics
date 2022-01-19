@@ -8,22 +8,20 @@ var app = express()
 const hostname = '127.0.0.1';
 const port = 3000;
 
-var imageBasePath = '/mnt/e/users/sng/pictures/'
+const imageBasePath = '/mnt/e/users/sng/pictures/'
 var imageDict;
 
 init();
-
-
 
 async function buildImageProps(imageFiles) {
     imageDict = new Object();
     for (var i = 0; i < imageFiles.length; i++) {
         console.log("Reading image", i, "of", imageFiles.length)
         try {
-            path = '/images/' + imageFiles[i].split(imageBasePath)[1]
-            imageDict[imageFiles[i]] = await avgColors.getAverageColor(imageFiles[i]).value
+            var shortPath = '/images/' + imageFiles[i].split(imageBasePath)[1]
+            imageDict[shortPath] = (await avgColors.getAverageColor(imageFiles[i])).value
         } catch(e) {
-
+            console.log(e)
         }   
     } 
 }
